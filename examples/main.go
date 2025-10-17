@@ -1,14 +1,23 @@
 package main
 
-import "github.com/maxBRT/go-keeper/gateway"
+import (
+	"github.com/maxBRT/go-keeper/auth"
+	"github.com/maxBRT/go-keeper/gateway"
+)
 
 func main() {
 	gw := gateway.New("6969")
 
-	gw.Route("/status/*", "httpbin.org")
+	authProvider, err := auth.NewAuthProvider()
+	if err != nil {
+		panic(err)
+	}
+
+	gw.Use(authProvider.JWTMiddleware)
+
+	gw.Route("/*", "httpbin.org")
 
 	if err := gw.Run(); err != nil {
 		panic(err)
 	}
-
 }
