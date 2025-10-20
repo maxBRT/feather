@@ -1,4 +1,4 @@
-package gokeeper
+package feather
 
 import (
 	"fmt"

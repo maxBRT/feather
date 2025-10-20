@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/maxBRT/go-keeper"
+	"github.com/maxBRT/feather"
 )
 
 func main() {
-	gw, err := gokeeper.New("config.yaml")
+	gw, err := feather.New("config.yaml")
 	if err != nil {
 		panic(err)
 	}
