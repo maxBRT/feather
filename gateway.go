@@ -2,10 +2,12 @@ package feather
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 // Gateway represents the core of the Feather API gateway.
@@ -25,7 +27,6 @@ type Gateway struct {
 // and returns an initialized Gateway instance.
 func New(path string) (*Gateway, error) {
 	var gw Gateway
-
 	data, err := os.ReadFile(path)
 	if err != nil {
 		fmt.Println("config file not found")
@@ -35,7 +36,9 @@ func New(path string) (*Gateway, error) {
 		fmt.Println("failed to unmarshal config")
 		return nil, err
 	}
-
+	if err := validateGatewayConfig(gw); err != nil {
+		return nil, err
+	}
 	return &gw, nil
 }
 
@@ -115,4 +118,27 @@ func (g *Gateway) match(path string) (*Route, bool) {
 		}
 	}
 	return nil, false
+}
+
+func validateGatewayConfig(c Gateway) error {
+	if len(c.Routes) == 0 {
+		return fmt.Errorf("no routes defined")
+	}
+	for _, r := range c.Routes {
+		if r.Name == "" {
+			return fmt.Errorf("route missing name")
+		}
+		if len(r.Paths) == 0 {
+			return fmt.Errorf("route %q has no paths", r.Name)
+		}
+		if r.Backend == "" {
+			return fmt.Errorf("route %q missing service reference", r.Name)
+		}
+	}
+	for _, r := range c.Routes {
+		if _, err := url.ParseRequestURI(r.Backend); err != nil {
+			return fmt.Errorf("invalid URL for service %q: %v", r.Name, err)
+		}
+	}
+	return nil
 }
