@@ -8,8 +8,9 @@ Feather is a lightweight, modular API gateway library written in Go.
 It provides a simple and flexible framework for building gateways tailored to your specific needs, 
 with a pluggable architecture that supports custom authentication, rate limiting, and logging.
 
-## Goals
-- Easy to import and configure (`go get` compatible).  
-- Minimal runtime overhead.  
-- Provider-agnostic auth.  
-- Tests, examples, and simple benchmarks included.
+## Features
+- Minimal runtime overhead.
+- YAML-based configuration.
+- Per-route middleware support.
+- HTTP and HTTPS protocols.
+- SSL termination.
