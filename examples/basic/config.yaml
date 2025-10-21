@@ -1,0 +1,14 @@
+routes:
+  # -----------------------
+  # User service route
+  # -----------------------
+  - name: "users"             # Logical name for this route group
+    paths: ["/users/*"]       # All requests matching /users/... go here
+    backend: "localhost:8000" # Target backend service address (host:port)
+
+  # -----------------------
+  # Payment service route
+  # -----------------------
+  - name: "payments"          # Logical name for this route group
+    paths: ["/payments/*"]    # All requests matching /payments/... go here
+    backend: "localhost:8800" # Backend handling payment-related requests

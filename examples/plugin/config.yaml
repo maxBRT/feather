@@ -1,0 +1,9 @@
+routes:
+  - name: "users"             # Logical name for this route group
+    paths: ["/users/*"]       # All requests matching /users/... go here
+    backend: "localhost:8000" # Target backend service address (host:port)
+    plugins: 
+      - name: "logger"        # Plugin key as registered in Go code
+        config:               # Optional plugin configuration
+          prefix: "[Users]"   # Example setting passed to the factory
+
