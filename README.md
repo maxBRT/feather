@@ -6,13 +6,13 @@ This project is still under development and not ready for use.
 
 # Feather
 
-Feather is a lightweight, modular API gateway library written in Go.
+Feather is a lightweight, modular reverse proxy/API gateway library written in Go.
 It provides a simple and flexible framework for building gateways tailored to your specific needs, 
 with a pluggable architecture that supports custom authentication, rate limiting, and logging.
 
 ## Features
 - Minimal runtime overhead.
-- YAML-based configuration.
+- Live reloading YAML-based configuration.
 - Per-route middleware support.
 - HTTP and HTTPS protocols.
 - SSL termination.
