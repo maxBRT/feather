@@ -1,3 +1,6 @@
+
+<img width="512" height="512" alt="ChatGPT Image Oct 23, 2025, 03_35_24 PM" src="https://github.com/user-attachments/assets/03abd4c9-2961-4664-b35f-f65eb243a30c" />
+
 ## Status
 🚧 Work in Progress  
 This project is still under development and not ready for use.
